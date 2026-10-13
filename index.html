@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Wedding of Fakhira &amp; Wafi</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          midnight: '#070e1b',
+          deepnavy: '#0c182b',
+          dustyblue: '#5a7b9c',
+          softblue: '#c2d6eb',
+          blushpink: '#f4d8de',
+          dustyrose: '#c98ca7',
+          ivory: '#faf7f2',
+          surface: '#0c1321',
+          'surface-dim': '#070e1b',
+          'surface-bright': '#192438'
+        },
+        fontFamily: {
+          serif: ['Playfair Display', 'Cormorant Garamond', 'serif'],
+          sans: ['Plus Jakarta Sans', 'Montserrat', 'sans-serif'],
+          script: ['Great Vibes', 'cursive']
+        }
+      }
+    }
+  }
+</script>
+<!-- Google Fonts: Luxury Editorial Serif & Modern Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&amp;display=swap" rel="stylesheet"/>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style data-purpose="cinematic-animations">
+  @keyframes kenBurnsSlow {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.08) translate(-1%, -1%); }
+    100% { transform: scale(1.02) translate(1%, 0.5%); }
+  }
+  @keyframes spinDisc {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes etherealGlow {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+  @keyframes floatGentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .ken-burns {
+    animation: kenBurnsSlow 26s ease-in-out infinite alternate;
+  }
+  .spin-disc {
+    animation: spinDisc 14s linear infinite;
+  }
+  .spin-disc-paused {
+    animation-play-state: paused;
+  }
+  .ethereal-pulse {
+    animation: etherealGlow 6s ease-in-out infinite;
+  }
+  .float-slow {
+    animation: floatGentle 5s ease-in-out infinite;
+  }
+  /* Fluid scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #070e1b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(201, 140, 167, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 140, 167, 0.5);
+  }
+  /* Pure cinematic aura gradients with zero sharp cards */
+  .film-aura-blue {
+    background: radial-gradient(ellipse at 50% 50%, rgba(90, 123, 156, 0.18) 0%, rgba(12, 24, 43, 0.05) 55%, transparent 75%);
+  }
+  .film-aura-rose {
+    background: radial-gradient(ellipse at 50% 50%, rgba(201, 140, 167, 0.16) 0%, rgba(12, 24, 43, 0.04) 55%, transparent 75%);
+  }
+  .glow-text {
+    text-shadow: 0 0 25px rgba(244, 216, 222, 0.3), 0 0 50px rgba(90, 123, 156, 0.2);
+  }
+  /* Strict 100% contain fit for all portrait & landscape photography */
+  .photo-contain-safe {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body class="bg-midnight text-ivory font-sans antialiased overflow-x-hidden selection:bg-dustyrose selection:text-white">
+<!-- BEGIN: Ambient Particles Canvas -->
+<canvas class="fixed inset-0 pointer-events-none z-10 opacity-70" id="ambient-canvas"></canvas>
+<!-- END: Ambient Particles Canvas -->
+<!-- BEGIN: Floating Music Player Widget -->
+<div class="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+<div class="opacity-0 transition-opacity duration-300 pointer-events-none text-[11px] text-softblue tracking-[0.2em] uppercase bg-midnight/90 px-3.5 py-1.5 rounded-full border border-softblue/20 backdrop-blur-md hidden sm:block" id="music-tooltip">
+    Play Score
+  </div>
+<button aria-label="Toggle Soundtrack" class="relative p-3 rounded-full bg-deepnavy/70 border border-dustyrose/30 shadow-[0_0_30px_rgba(201,140,167,0.25)] backdrop-blur-xl flex items-center justify-center hover:border-dustyrose transition-all group" id="music-toggle-btn">
+<div class="relative w-8 h-8 flex items-center justify-center spin-disc spin-disc-paused" id="vinyl-icon">
+<i class="w-6 h-6 text-blushpink group-hover:text-white transition-colors" data-lucide="disc-3"></i>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-dustyrose shadow-sm"></div>
+</div>
+</div>
+</button>
+</div>
+<!-- YouTube Audio Background Embed -->
+<!-- Keep the iframe rendered (not display:none) so mobile Safari/Chrome can initialize it reliably. -->
+<div aria-hidden="true" id="yt-player-container" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden;">
+<iframe
+  allow="autoplay; encrypted-media"
+  height="1"
+  id="yt-player"
+  src="https://www.youtube.com/embed/6WjuuzhWyh0?enablejsapi=1&amp;playsinline=1&amp;loop=1&amp;playlist=6WjuuzhWyh0&amp;rel=0"
+  title="Wedding Soundtrack"
+  width="1">
+</iframe>
+</div>
+<!-- END: Floating Music Player Widget -->
+<!-- BEGIN: Curtain Opening Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-midnight transition-all duration-1000 ease-out" id="curtain-overlay">
+<!-- Cinematic Background with Ken Burns -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<img alt="The Sacred Union Walk" class="w-full h-full object-cover ken-burns opacity-30 filter brightness-70 contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLbd_Py1Y7cmApVJC7p3e9OrnEWmW150XnkxdtYwsKv8nq-cLclUCU_OlLHRnS1E9GQCzY11YQ0CsIzOzKr9d9I_jO5j0wC73V-4AzjoAh2xdyLDfC7LQ30HX7spLgu1dB1qyQs77eCVpwFOuD2V2tExR2D-x7TnLFa8GcqyF7cNB38iHjGl0l8W7BhJ2kmUbtiLiNvQV14xNUxTng6v66pGqFz-W2_Dji1FL3h0cUB-98YsXUNMGWTMeRpo-OyssprAM"/>
+<div class="absolute inset-0 bg-gradient-to-b from-midnight via-midnight/70 to-midnight"></div>
+<div class="absolute inset-0 film-aura-rose"></div>
+</div>
+<!-- Editorial Invitation Callout -->
+<div class="relative z-10 text-center px-6 max-w-xl mx-auto flex flex-col items-center">
+<!-- Botanical Flourish & Monogram -->
+<div class="relative mb-6">
+<div class="w-20 h-20 rounded-full border border-softblue/30 flex items-center justify-center text-dustyrose font-serif text-2xl tracking-widest bg-deepnavy/40 backdrop-blur-md float-slow">
+        F &amp; W
+      </div>
+<div class="absolute -inset-2 rounded-full bg-dustyrose/10 blur-md pointer-events-none"></div>
+</div>
+<p class="text-[11px] uppercase tracking-[0.4em] text-softblue/80 mb-3 font-light">The Sacred Wedding Union</p>
+<h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-light tracking-wide text-ivory glow-text mb-4">
+      FAKHIRA <span class="font-script text-dustyrose text-4xl sm:text-5xl md:text-6xl lowercase">&amp;</span> WAFI
+    </h1>
+<div class="w-24 h-px bg-gradient-to-r from-transparent via-softblue/40 to-transparent my-4"></div>
+<!-- Personalized Guest Badge (Dynamic '?to=') -->
+<div class="my-5 py-3 px-8 rounded-full bg-deepnavy/40 border border-softblue/20 backdrop-blur-md max-w-sm w-full">
+<p class="text-[10px] text-softblue/75 tracking-[0.25em] font-light uppercase">Kepada Yth. Tamu Kehormatan</p>
+<p class="text-base sm:text-lg font-serif text-blushpink mt-0.5 font-normal italic" id="guest-name">Tamu Undangan</p>
+</div>
+<p class="text-xs text-softblue/70 max-w-sm mb-8 leading-relaxed font-light">
+      Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir &amp; memberikan doa restu.
+    </p>
+<!-- Unlock Button -->
+<button class="group relative px-9 py-3.5 rounded-full overflow-hidden text-xs uppercase tracking-[0.3em] font-medium text-white bg-gradient-to-r from-dustyblue via-dustyrose to-dustyblue hover:opacity-95 transition-all duration-500 shadow-[0_0_25px_rgba(201,140,167,0.35)] flex items-center gap-3" id="btn-open-invitation">
+<i class="w-4 h-4 text-blushpink group-hover:scale-110 transition-transform" data-lucide="mail-open"></i>
+<span>Buka Undangan</span>
+</button>
+</div>
+</div>
+<!-- END: Curtain Opening Overlay -->
+<!-- MAIN FLOW WRAPPER -->
+<main class="relative z-20">
+<!-- BEGIN: Hero Section -->
+<section class="min-h-screen relative flex items-center justify-center px-4 py-28 overflow-hidden" data-purpose="hero-cover">
+<!-- Ambient Luminous Backdrop -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<img alt="Atmospheric Backdrop" class="w-full h-full object-cover opacity-20 filter contrast-125 brightness-75 scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASVOkGl5XLB-sO7qjzk6SC1iA7CVsjjjJizidXWC2jmtiKFEzKJJSBwdAxbpw_Y9_l9gNvskouFgihwzoP-JQDw-5QuHqEeQ-JXZBs5ACGs_oqr1xa6lfDersVDU6EU42PT2cplM3X6mJ-g1ITlEMAa2dlOZzchqGTsiFnDXd2-_zc9CxWbFy9k95iasNh2g5l9KNE1fj_zU9nMayeKLZbqksrtBfpDYzQ1LQYr_5EPdr8I379xvn4ThISXSOPvslv560"/>
+<div class="absolute inset-0 bg-gradient-to-b from-midnight via-midnight/80 to-midnight"></div>
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-dustyblue/15 rounded-full blur-[140px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-dustyrose/15 rounded-full blur-[130px]"></div>
+</div>
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<div class="flex items-center justify-center gap-4 mb-6 text-dustyrose/60">
+<span class="w-16 h-px bg-gradient-to-r from-transparent to-dustyrose/60"></span>
+<i class="w-4 h-4" data-lucide="sparkle"></i>
+<span class="w-16 h-px bg-gradient-to-l from-transparent to-dustyrose/60"></span>
+</div>
+<p class="text-xs sm:text-sm uppercase tracking-[0.45em] text-softblue font-light mb-4">
+        Walimatul Ursy
+      </p>
+<h1 class="font-serif text-6xl sm:text-8xl md:text-9xl font-light tracking-wide text-ivory glow-text mb-6">
+        FAKHIRA <span class="font-script text-dustyrose text-5xl sm:text-7xl md:text-8xl block md:inline">&amp;</span> WAFI
+      </h1>
+<p class="text-xs sm:text-sm text-softblue/90 font-light tracking-[0.3em] uppercase mb-12">
+        Minggu, 22 November 2026 • Jakarta
+      </p>
+<!-- Floating Organic Countdown -->
+<div class="my-10 max-w-xl mx-auto py-8 px-6 sm:px-10 rounded-full border border-softblue/20 bg-deepnavy/30 backdrop-blur-xl shadow-[0_0_35px_rgba(90,123,156,0.15)] relative">
+<p class="text-[10px] uppercase tracking-[0.35em] text-blushpink mb-6 font-light">Menuju Hari Bahagia</p>
+<div class="grid grid-cols-4 gap-2 sm:gap-6 text-center">
+<div class="flex flex-col">
+<span class="font-serif text-3xl sm:text-5xl font-light text-ivory" id="timer-days">00</span>
+<span class="text-[9px] sm:text-[11px] uppercase tracking-widest text-softblue mt-1 font-light">Hari</span>
+</div>
+<div class="flex flex-col border-l border-white/10">
+<span class="font-serif text-3xl sm:text-5xl font-light text-ivory" id="timer-hours">00</span>
+<span class="text-[9px] sm:text-[11px] uppercase tracking-widest text-softblue mt-1 font-light">Jam</span>
+</div>
+<div class="flex flex-col border-l border-white/10">
+<span class="font-serif text-3xl sm:text-5xl font-light text-ivory" id="timer-minutes">00</span>
+<span class="text-[9px] sm:text-[11px] uppercase tracking-widest text-softblue mt-1 font-light">Menit</span>
+</div>
+<div class="flex flex-col border-l border-white/10">
+<span class="font-serif text-3xl sm:text-5xl font-light text-ivory" id="timer-seconds">00</span>
+<span class="text-[9px] sm:text-[11px] uppercase tracking-widest text-softblue mt-1 font-light">Detik</span>
+</div>
+</div>
+</div>
+<div class="animate-bounce mt-10 opacity-60 flex justify-center text-softblue">
+<i class="w-5 h-5" data-lucide="chevron-down"></i>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Quran Verse Section -->
+<section class="py-24 px-6 relative" data-purpose="holy-verse">
+<div class="max-w-3xl mx-auto text-center relative z-10">
+<div class="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-dustyblue/30 text-[11px] tracking-[0.25em] text-softblue mb-8 uppercase font-light bg-deepnavy/30 backdrop-blur-sm">
+<i class="w-3 h-3 text-dustyrose" data-lucide="bookmark"></i>
+<span>QS. Ar-Rum : 21</span>
+</div>
+<p class="font-serif italic text-lg sm:text-xl md:text-2xl leading-relaxed text-ivory/95 font-light tracking-wide mb-8">
+        “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”
+      </p>
+<div class="w-20 h-px bg-gradient-to-r from-transparent via-dustyrose/60 to-transparent mx-auto"></div>
+</div>
+</section>
+<!-- END: Quran Verse Section -->
+<!-- BEGIN: Couple Section (Bride Hosted First: Fakhira & Wafi) -->
+<section class="py-28 px-6 relative overflow-hidden" data-purpose="couple-showcase">
+<!-- Ambient Flowing Glows -->
+<div class="absolute top-1/2 left-0 w-[500px] h-[500px] film-aura-rose pointer-events-none"></div>
+<div class="absolute bottom-10 right-0 w-[500px] h-[500px] film-aura-blue pointer-events-none"></div>
+<div class="max-w-6xl mx-auto relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-24">
+<p class="text-xs uppercase tracking-[0.35em] text-dustyblue font-light mb-3">Maha Suci Allah yang telah mempertemukan</p>
+<h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-ivory font-light">Mempelai Berbahagia</h2>
+<div class="w-20 h-px bg-gradient-to-r from-transparent via-softblue/40 to-transparent mx-auto mt-4"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-24 items-center">
+<!-- Bride: Fakhira Kamila Ainurrafik (First & Host) -->
+<div class="flex flex-col items-center text-center group">
+<div class="relative w-72 h-[420px] sm:w-80 sm:h-[480px] p-2 flex items-center justify-center">
+<!-- Organic Radial Background Aura -->
+<div class="absolute inset-0 rounded-[3rem] bg-gradient-to-b from-dustyrose/20 via-deepnavy/50 to-transparent blur-md group-hover:blur-lg transition-all duration-700"></div>
+<!-- Portrait Container with strict contain fit -->
+<div class="relative w-full h-full rounded-[2.5rem] overflow-hidden bg-deepnavy/60 border border-dustyrose/25 flex items-center justify-center backdrop-blur-md">
+<img alt="Fakhira Kamila Ainurrafik, S.H." class="photo-contain-safe transition-transform duration-700 group-hover:scale-105" src="fakhira.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent pointer-events-none"></div>
+</div>
+</div>
+<h3 class="font-serif text-3xl sm:text-4xl text-ivory font-light mt-8 mb-2 glow-text">
+            Fakhira Kamila Ainurrafik, S.H.
+          </h3>
+<p class="text-xs uppercase tracking-[0.25em] text-blushpink font-light mb-4">Mempelai Wanita</p>
+<p class="text-sm text-softblue/90 font-light max-w-sm leading-relaxed mb-5">
+            Putri kedua dari pasangan tercinta:<br/>
+<span class="text-ivory font-normal">Bapak Muhamad Rafik, SE., Ak., SH., MH.</span><br/>
+<span class="text-ivory/80">&amp; Ibu Feradina Yuda, SThl</span>
+</p>
+<a class="inline-flex items-center gap-2 text-xs text-softblue hover:text-dustyrose transition-colors py-2 px-5 rounded-full border border-softblue/20 hover:border-dustyrose/40 bg-deepnavy/30 backdrop-blur-md" href="https://instagram.com/fakhiraainurrafik" rel="noopener noreferrer" target="_blank">
+<i class="w-3.5 h-3.5" data-lucide="instagram"></i>
+<span>@fakhiraainurrafik</span>
+</a>
+</div>
+<!-- Groom: Wafi Fathurrahman Ammi -->
+<div class="flex flex-col items-center text-center group">
+<div class="relative w-72 h-[420px] sm:w-80 sm:h-[480px] p-2 flex items-center justify-center">
+<!-- Organic Radial Background Aura -->
+<div class="absolute inset-0 rounded-[3rem] bg-gradient-to-b from-dustyblue/20 via-deepnavy/50 to-transparent blur-md group-hover:blur-lg transition-all duration-700"></div>
+<!-- Portrait Container with strict contain fit -->
+<div class="relative w-full h-full rounded-[2.5rem] overflow-hidden bg-deepnavy/60 border border-dustyblue/25 flex items-center justify-center backdrop-blur-md">
+<img alt="Wafi Fathurrahman Ammi, B.A." class="photo-contain-safe transition-transform duration-700 group-hover:scale-105" src="wafi.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent pointer-events-none"></div>
+</div>
+</div>
+<h3 class="font-serif text-3xl sm:text-4xl text-ivory font-light mt-8 mb-2 glow-text">
+            Wafi Fathurrahman Ammi, B.A.
+          </h3>
+<p class="text-xs uppercase tracking-[0.25em] text-dustyblue font-light mb-4">Mempelai Pria</p>
+<p class="text-sm text-softblue/90 font-light max-w-sm leading-relaxed mb-5">
+            Putra pertama dari pasangan tercinta:<br/>
+<span class="text-ivory font-normal">Bapak Muhammad Amin</span><br/>
+<span class="text-ivory/80">&amp; Ibu Dra. Mimi Wahyuni</span>
+</p>
+<a class="inline-flex items-center gap-2 text-xs text-softblue hover:text-dustyblue transition-colors py-2 px-5 rounded-full border border-softblue/20 hover:border-dustyblue/40 bg-deepnavy/30 backdrop-blur-md" href="https://instagram.com/fath__21" rel="noopener noreferrer" target="_blank">
+<i class="w-3.5 h-3.5" data-lucide="instagram"></i>
+<span>@fath__21</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Couple Section -->
+<!-- BEGIN: Event & Itinerary Section -->
+<section class="py-28 px-6 relative" data-purpose="event-schedule">
+<div class="max-w-5xl mx-auto relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-20">
+<p class="text-xs uppercase tracking-[0.35em] text-softblue font-light mb-3">Waktu &amp; Lokasi</p>
+<h2 class="font-serif text-4xl sm:text-5xl text-ivory font-light">Rangkaian Acara</h2>
+<p class="text-sm text-softblue/70 mt-2 font-light">Insya Allah akan diselenggarakan pada:</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+<!-- Event 1: Akad Nikah -->
+<div class="relative p-8 md:p-10 rounded-3xl border border-softblue/20 bg-deepnavy/40 backdrop-blur-xl transition-all duration-500 hover:border-dustyrose/40">
+<div class="w-12 h-12 rounded-2xl bg-dustyblue/20 text-dustyblue flex items-center justify-center mb-6">
+<i class="w-6 h-6" data-lucide="scroll"></i>
+</div>
+<p class="text-[11px] uppercase tracking-[0.3em] text-blushpink font-medium">Sacred Vow</p>
+<h3 class="font-serif text-3xl text-ivory font-light mt-1 mb-4">Akad Nikah</h3>
+<div class="space-y-4 my-6 text-sm text-softblue/90 font-light border-y border-white/10 py-6">
+<div class="flex items-center gap-3">
+<i class="w-4 h-4 text-dustyrose" data-lucide="calendar"></i>
+<span>Minggu, 22 November 2026</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="w-4 h-4 text-dustyrose" data-lucide="clock"></i>
+<span class="text-ivory font-medium">15.30 WIB - Selesai</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="w-4 h-4 text-softblue" data-lucide="user-check"></i>
+<span class="text-xs text-softblue/80">Momen Mengikat Janji Suci</span>
+</div>
+</div>
+<p class="text-xs text-softblue/70 leading-relaxed font-light">
+            Mengharapkan keridhoaan Ilahi untuk kelancaran dan kekhidmatan prosesi ijab kabul.
+          </p>
+</div>
+<!-- Event 2: Resepsi Pernikahan -->
+<div class="relative p-8 md:p-10 rounded-3xl border border-softblue/20 bg-deepnavy/40 backdrop-blur-xl transition-all duration-500 hover:border-dustyblue/40">
+<div class="w-12 h-12 rounded-2xl bg-dustyrose/20 text-dustyrose flex items-center justify-center mb-6">
+<i class="w-6 h-6" data-lucide="sparkles"></i>
+</div>
+<p class="text-[11px] uppercase tracking-[0.3em] text-dustyblue font-medium">Celebration</p>
+<h3 class="font-serif text-3xl text-ivory font-light mt-1 mb-4">Resepsi Pernikahan</h3>
+<div class="space-y-4 my-6 text-sm text-softblue/90 font-light border-y border-white/10 py-6">
+<div class="flex items-center gap-3">
+<i class="w-4 h-4 text-dustyrose" data-lucide="calendar"></i>
+<span>Minggu, 22 November 2026</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="w-4 h-4 text-dustyrose" data-lucide="clock"></i>
+<span class="text-ivory font-medium">18.30 – 20.30 WIB</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="w-4 h-4 text-softblue" data-lucide="heart"></i>
+<span class="text-xs text-softblue/80">Malam Ramah Tamah &amp; Jamuan Santap</span>
+</div>
+</div>
+<p class="text-xs text-softblue/70 leading-relaxed font-light">
+            Merupakan kehormatan bagi kami atas kehadiran dan doa restu Bapak/Ibu/Saudara/i.
+          </p>
+</div>
+</div>
+<!-- Venue & Google Map Link -->
+<div class="mt-14 p-8 sm:p-12 rounded-3xl border border-softblue/20 bg-deepnavy/30 backdrop-blur-xl text-center max-w-3xl mx-auto">
+<div class="w-12 h-12 rounded-full bg-softblue/10 flex items-center justify-center mx-auto mb-4 text-softblue">
+<i class="w-6 h-6" data-lucide="map-pin"></i>
+</div>
+<h4 class="font-serif text-2xl sm:text-3xl text-ivory font-light mb-2">Gedung Merauke</h4>
+<p class="text-sm text-blushpink font-light tracking-wide mb-2">Kantor Pusat Bea Cukai</p>
+<p class="text-xs sm:text-sm text-softblue/80 font-light max-w-lg mx-auto leading-relaxed mb-8">
+          Kelurahan Rawamangun, Kecamatan Pulo Gadung, Kota Jakarta Timur, DKI Jakarta.
+        </p>
+<a class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-xs uppercase tracking-[0.25em] font-medium text-white bg-gradient-to-r from-dustyblue to-deepnavy hover:from-dustyrose hover:to-dustyblue transition-all duration-500 shadow-lg border border-softblue/30" href="https://maps.app.goo.gl/eCAmw85TVrzAzvFy9?g_st=ic" rel="noopener noreferrer" target="_blank">
+<i class="w-4 h-4" data-lucide="navigation"></i>
+<span>Petunjuk Arah Google Maps</span>
+</a>
+</div>
+</div>
+</section>
+<!-- END: Event & Itinerary Section -->
+<!-- BEGIN: Love Story Section -->
+<section class="py-28 px-6 relative" data-purpose="love-story">
+<div class="max-w-5xl mx-auto relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-24">
+<p class="text-xs uppercase tracking-[0.35em] text-dustyrose font-light mb-3">Memories in Motion</p>
+<h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-ivory font-light">Our Story</h2>
+<p class="text-sm text-softblue/70 mt-3 italic font-serif">Kisah dua insan dalam takdir yang terajut indah</p>
+<div class="w-24 h-px bg-gradient-to-r from-transparent via-dustyrose/60 to-transparent mx-auto mt-4"></div>
+</div>
+<div class="space-y-24 md:space-y-32">
+<!-- Chapter 01: First Met (Photo 4: IMAGE_2) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<div class="lg:col-span-7 group">
+<div class="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden flex items-center justify-center">
+<img alt="Chapter 01 First Met" class="photo-contain-safe transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmd149lTBpXOiuJe_uRV1fbTdXq2bSslwQnm9vwR3ehNqgmfLHgPufzZWBqhyEDA9RHenYBMQBeZ3kX3SjqfQnKl2-mPr2P0M3Nb143MplwPTtoJ5kBDMJ0ryoODWxb5AVHXtNyrTf61Zv4p-VyGs6nykzLbdj0rC779OdnDmipN3A_vJo1Wtiv41l6RkSKg6Wr8TH5jQFmOnTZOJ_wokYOHqXKvT7oDc7r2bMyNpJzrPbmrJ5PhqskInVXNsmbJsMMkg"/>
+</div>
+</div>
+<div class="lg:col-span-5 lg:pl-4 text-center lg:text-left">
+<span class="text-xs tracking-[0.3em] uppercase text-dustyrose font-mono">Chapter 01</span>
+<h3 class="font-serif text-3xl sm:text-4xl text-ivory font-light mt-1 mb-4">First Met</h3>
+<p class="text-sm sm:text-base text-softblue/85 font-light leading-relaxed">
+              Kami dipertemukan di acara pernikahan sepasang sahabat kami — teman baik yang kemudian memperkenalkan kami satu sama lain. Dari perkenalan itu, kisah kami mulai terjalin, hingga akhirnya sampai pada hari bahagia ini.
+            </p>
+</div>
+</div>
+<!-- Chapter 02: The Beginning (Photo 5: IMAGE_3) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<div class="lg:col-span-7 lg:order-2 group">
+<div class="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden flex items-center justify-center">
+<img alt="Chapter 02 The Beginning" class="photo-contain-safe transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9HuhWKH6PtGB16dJeAeSjfyIwR-NXe1Yrncz7S-PR8yMGypnkBBkdSEEntEJlfXbnz2pUAL-zIAcglxph3457jjVWl9jao-JuqAjEs5ht5698gAN0BL74XbUUqLv-gy1UK49mdh8Rp45GVuW4kqsmYVqul6y5SNFfT1lXU68PCqcpSUyn4Gv1fsV07Y3X0Fj40BRWAirS-ZYoPOS9JdKD3TxKZ1Z-kqZlXmFcmYteOI7RXceGkNcEZ_NI_9E1It1T6j4"/>
+</div>
+</div>
+<div class="lg:col-span-5 lg:order-1 lg:pr-4 text-center lg:text-right">
+<span class="text-xs tracking-[0.3em] uppercase text-dustyblue font-mono">Chapter 02</span>
+<h3 class="font-serif text-3xl sm:text-4xl text-ivory font-light mt-1 mb-4">The Beginning</h3>
+<p class="text-sm sm:text-base text-softblue/85 font-light leading-relaxed">
+              Dari sebuah perkenalan sederhana, perlahan tumbuh rasa ingin mengenal satu sama lain lebih jauh. Tidak ada yang menyangka bahwa pertemuan yang berawal dari sebuah acara pernikahan sahabat akan menjadi awal dari perjalanan yang begitu berarti. Dari percakapan-percakapan kecil, kami mulai menemukan kenyamanan dan kesamaan yang membuat kami ingin terus berjalan bersama.
+            </p>
+</div>
+</div>
+<!-- Chapter 03: The Journey (Photo 6: IMAGE_4) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<div class="lg:col-span-7 group">
+<div class="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden flex items-center justify-center">
+<img alt="Chapter 03 The Journey" class="photo-contain-safe transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiyXvJlCY2bLq0Mqb3wrwbQX2_zFSZixI21BSn61vf6tsaUYgBtuzt6DnLClSP3J1kU72mcvFngjb__VUp1vfDPTInONhD1PtAMSrVP6FRhKtWYn6Klf0Iyo5tUyjUmrZql0NgvSHvBS6tdaYHB_iCTkm8FU70ENjpVwq3OyX2udpQPQnHKRLDTjnJOtE-hfOoDDIGWWMTzUpS5UVdqTQZ1rziFP1_bbVNuX-YKj20ZO3WLkImVkzc1pOXktypQGsd-vY"/>
+</div>
+</div>
+<div class="lg:col-span-5 lg:pl-4 text-center lg:text-left">
+<span class="text-xs tracking-[0.3em] uppercase text-blushpink font-mono">Chapter 03</span>
+<h3 class="font-serif text-3xl sm:text-4xl text-ivory font-light mt-1 mb-4">The Journey</h3>
+<p class="text-sm sm:text-base text-softblue/85 font-light leading-relaxed">
+              Seiring waktu, kami belajar bahwa perjalanan menuju sebuah pernikahan bukan hanya tentang menemukan seseorang untuk dicintai, tetapi juga tentang belajar memahami, menghargai, dan menemani satu sama lain dalam berbagai keadaan.<br/><br/>
+              Hari demi hari, melalui tawa, percakapan, perbedaan, dan berbagai momen yang kami lewati bersama, rasa yang awalnya sederhana tumbuh menjadi keyakinan. Kami mulai menyadari bahwa kebahagiaan bukan hanya tentang memiliki seseorang di sisi kita, tetapi tentang menemukan seseorang yang ingin berjalan bersama menuju arah yang sama.
+            </p>
+</div>
+</div>
+<!-- Chapter 04: Today (Photo 7: IMAGE_5) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<div class="lg:col-span-7 lg:order-2 group">
+<div class="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden flex items-center justify-center">
+<img alt="Chapter 04 Today" class="photo-contain-safe transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-sV5hX9p1K-Tbc5O5IrWb9ejvJXm8N-y8BL4OHkDhHcufqWymK52yA0NWedkEmsmA_bPppcpl-Gs7UPuBxhPQsxyAyal9_aUNMjwtYJaY-LzHi9wZL5haR4ihUlBKIm7519oxZgYjyCFl8QnL9tidK2JvEPI4vWDnPb4Gb17hRwcNEGceC7EFyIqwkHXf2lYL4QX9_dVmAdzAtnMDb6AZW4GNDgb6HnKQ-Mwx6F12-aHqukK3JZU6x9BNU-4jJfGXpSA"/>
+</div>
+</div>
+<div class="lg:col-span-5 lg:order-1 lg:pr-4 text-center lg:text-right">
+<span class="text-xs tracking-[0.3em] uppercase text-dustyrose font-mono">Chapter 04</span>
+<h3 class="font-serif text-3xl sm:text-4xl text-ivory font-light mt-1 mb-4">Today</h3>
+<p class="text-sm sm:text-base text-softblue/85 font-light leading-relaxed">
+              Dan hari ini, perjalanan itu membawa kami sampai pada satu momen yang begitu kami syukuri.<br/><br/>
+              Apa yang dahulu bermula dari sebuah perkenalan di pernikahan sahabat, kini menjadi awal dari perjalanan baru sebagai dua insan yang memilih untuk saling mendampingi.<br/><br/>
+              Dengan segala doa, harapan, dan rasa syukur, kami melangkah menuju kehidupan baru bersama.
+            </p>
+</div>
+</div>
+</div>
+<!-- Verbatim Closing Story Tagline -->
+<div class="mt-24 py-12 px-6 text-center max-w-3xl mx-auto border-t border-b border-white/10">
+<p class="font-serif italic text-xl sm:text-2xl text-blushpink font-light tracking-wide glow-text">
+          “FROM A SIMPLE INTRODUCTION, TO A LIFETIME TOGETHER.”
+        </p>
+</div>
+</div>
+</section>
+<!-- END: Love Story Section -->
+<!-- BEGIN: Cinematic Wedding Video Section -->
+<section class="py-24 px-6 relative" data-purpose="wedding-video">
+<div class="max-w-4xl mx-auto relative z-10 text-center">
+<p class="text-xs uppercase tracking-[0.35em] text-softblue font-light mb-3">Our Visual Symphony</p>
+<h2 class="font-serif text-4xl sm:text-5xl text-ivory font-light mb-12">Cinematic Preview</h2>
+<div class="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-softblue/25 bg-black shadow-2xl">
+  <div class="w-full" style="aspect-ratio: 16 / 9;">
+    <iframe
+      src="https://www.youtube.com/embed/8M71h6c8mQI"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+      scrolling="no"
+      frameborder="0"
+      style="width:100%; height:100%; border:0; display:block;">
+    </iframe>
+  </div>
+</div>
+<p class="text-xs text-softblue/60 mt-4 tracking-wider uppercase font-light">Ketuk untuk menyaksikan dokumenter cinta kami</p>
+</div>
+</section>
+<!-- END: Cinematic Wedding Video Section -->
+<!-- BEGIN: Moments Gallery Section (Photos 8-15, Asymmetric Contain Fit, Lightbox) -->
+<section class="py-28 px-6 relative" data-purpose="moments-gallery">
+<div class="max-w-6xl mx-auto relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-20">
+<p class="text-xs uppercase tracking-[0.35em] text-dustyblue font-light mb-3">Captured Moments</p>
+<h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-ivory font-light">Gallery of Memories</h2>
+<div class="w-20 h-px bg-gradient-to-r from-transparent via-dustyrose/60 to-transparent mx-auto mt-4"></div>
+</div>
+<!-- Asymmetric Editorial Photo Mosaic -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-center">
+<!-- Photo 8: IMAGE_6 -->
+<div class="gallery-tile rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(0)">
+<div class="w-full h-72 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 1" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQQ07BXQZJvIVAQJ54JD4zQU-O4e7RR3mUPeXTRr06zbyqA0mCNiiOhSe50t5Vxj4nBED1DCUSZM9U8UPoRRJBRL1H7L-uI-HiZkABVWIbuG8ngDUoRnxdDL8aWQdRLdvapkNo5BySL8E4Tmvi8oJ2sSxdlIByXqJcAcqVz822rLTk0kMsUgHfCBj5goVRjCDLziRmHqfJ8dyHcv6SzHWPWLK99X6iUCepXudLHHPSE8cqB30uDFAYjeA9tbnQ0j5BpPc"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+<!-- Photo 9: IMAGE_7 -->
+<div class="gallery-tile rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(1)">
+<div class="w-full h-72 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 2" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjKbKy2zI73jtSKuml7VxHT3suwJSuayz3cGxwL983kRGEcVq5yZsa66ByVZOoUo7OEAZ4Xf9FqS55wQS5Oc6BzNM6MI5EZLcPMzCgLURZp2MvV4b2jIJfWgGVWriLjVwvT_3nizP4ekZBaChCU0Yn5ebHwNVu1ykFyFPF86yX53QyZFAAZZ_WRFvIu1bH0INC6vuAijjBbxnUoBt9_ydkD6V9kaaty8qyx55TimtQn5Ix4qQphJAnxNQu1WOQNChCLOE"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+<!-- Photo 10: IMAGE_8 -->
+<div class="gallery-tile rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(2)">
+<div class="w-full h-72 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 3" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtz7qvUSOsg_Skuhr0HCQkWuPbEpPLAmi6A7v-uYABTMTnmSRm7B1YhlvTejG93aeaDsV6XKyOAXOZUK3uXpP481POkVOfvGSv6wxE6sWkCpxEjNsr0TBRe_5Z1gByuzdbzii6u0qvGn9vJbnucuaz1-ObNLt7bjWiIQf4x8k-ugYpa3xhVllI_4PwNKyzJl6OwSASS1y4OC7UlmIlEL1olzijh5u0kJjc58ADpEgx4Cvt7Z0bs4EAO6__-YTKlRJXaTg"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+<!-- Photo 11: IMAGE_9 -->
+<div class="gallery-tile rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(3)">
+<div class="w-full h-72 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 4" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbM-h3AbI_TbjP1IG5HExqk2dMK3QQxu8w0MJrJpTxpReVLB7ItVWqEwkT0fqVpzcmPBDPaDULZmb6d-EOHdrWWUER6bcfvzElmOiVjnqwMnXQPw30YmTM2kr25wzUxo6wD10NgxBl62ClhyTIUHBKlKOsNFjjB58gDX3ZZHL7IaTBi8U12fpihUh_aF13x_7g3kiEUlmwFxcVlSj9lmmL6rHxBdLhtEqLPoVOk0Zb0mMNaQDf7phcxgJNixQLF3MrD_U"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+<!-- Photo 12: IMAGE_10 -->
+<div class="gallery-tile rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(4)">
+<div class="w-full h-72 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 5" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV5Y4Unpxc5VZxb1YbM5MvkHIpa9V2pz5f2bgma8osBwr1Y3vTahF-CnyM0ivNJ8_CqtCkDPt_1Dxilk0Th5JyvFTEKTXLeCvWIVecbAgUU4hCGsM_2sUlT9_Mb0b0Yb--ycAlLXAvP15QOsnlG4sx21USslyo8ORUSWG_ir8Cmzb2Nz2edlu_i5dyfx_kUf198Iup93i0odBFfilUcpm7M1k-nEnIoECgfiwX86mFzCWpudN531iDOgQklCx7QadS0XY"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+<!-- Photo 13: IMAGE_11 -->
+<div class="gallery-tile rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(5)">
+<div class="w-full h-72 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 6" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAaeRSpY-RmL8g8H7FDzC4vJeMc_MvdrBMcQkvE6HGVZLb_AFo2G9CDl1D4a0ogNUD9--7T92JCcO2nCY9Tj1TH4Ww4htDQotHebQrY7XzPDUpIJ80rl7uuWSs6DwuAiB4_jh3uAg1wIxao0zxYD2pOOygVQhqTntcd8KsvNp_G0zSDG9nzA3v_DMavlPGye9S8O_2YP-Js9uvjVHLDdq_JqmCWg97sTCrOr6pRCkuhq8WPqga8alZdCnC9zpWn-zTbHo"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+<!-- Photo 14: IMAGE_12 (Spanning 1 or 2 cols) -->
+<div class="gallery-tile sm:col-span-2 lg:col-span-2 rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(6)">
+<div class="w-full h-80 sm:h-96 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 7" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi4GcmjM5TZY0CHYjCxxACTNO_1fXPmOpIqsO8lMVM15K6YY9vgc8KTW7PSXvRJ35T6TsuYWQwfRUjitwNmmMuwenU44bXTMmhxcCnAkFqbcljhJp5bOmO613vEsSfUDH5pw015xFdYpnPOnwhPk5eF2cEwoBS_17FBjjwt-SfBqYnmecldQgVpLV7VG4_IRpkMk8riRjW9HRfwCcvA24gSsbkbntomzDXY6ld2gSw5UJQJqoEyIkqBTSLjrG3yFh3Xzo"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+<!-- Photo 15: IMAGE_13 -->
+<div class="gallery-tile sm:col-span-2 lg:col-span-1 rounded-3xl p-3 bg-deepnavy/40 border border-softblue/20 backdrop-blur-md overflow-hidden group cursor-pointer hover:border-dustyrose/50 transition-all duration-500" onclick="openLightbox(7)">
+<div class="w-full h-80 sm:h-96 rounded-2xl bg-deepnavy/60 flex items-center justify-center overflow-hidden relative">
+<img alt="Moment 8" class="photo-contain-safe transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWl8MJwp1PGEck8e0m2hhfw53BMbggo_rj-VBoNaYfTRj80AgFN_YNWSJUPuNF6zjukAEfZ-i8rpWt0cPql4gmnEjwoHUm5_XU1BAnnP0R19OcoE_sBT0b3m9TR2z9rWTpJKXlTcabgLT94GoiVcBVMtaRFgxq722W8hTDh63kCbprv7tDN2OLzUz0S6VQGZPf3hDVJ3DHlyr5LfvPCOM_I2IJKhRhUlgBj5d8YRtC_OxR0CeOKv0shaia_R8_qylnPhU"/>
+<div class="absolute inset-0 bg-midnight/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3 p-2 rounded-full bg-midnight/60 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+<i class="w-4 h-4" data-lucide="maximize-2"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Moments Gallery Section -->
+<!-- BEGIN: Lightbox Modal -->
+<div class="fixed inset-0 z-50 bg-midnight/95 backdrop-blur-2xl hidden flex flex-col items-center justify-center p-4" id="lightbox-modal">
+<button class="absolute top-6 right-6 text-white/80 hover:text-white p-2 z-50 transition-colors" onclick="closeLightbox()">
+<i class="w-8 h-8" data-lucide="x"></i>
+</button>
+<button class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white z-50 transition-colors" onclick="prevLightbox()">
+<i class="w-8 h-8" data-lucide="chevron-left"></i>
+</button>
+<div class="max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center p-2">
+<img alt="Enlarged Gallery Moment" class="max-w-full max-h-full object-contain rounded-2xl shadow-2xl transition-all duration-300" id="lightbox-img" src=""/>
+</div>
+<button class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white z-50 transition-colors" onclick="nextLightbox()">
+<i class="w-8 h-8" data-lucide="chevron-right"></i>
+</button>
+</div>
+<!-- END: Lightbox Modal -->
+<!-- BEGIN: RSVP Section (Strict: Max 2 guests! No gifts or angpao!) -->
+<section class="py-28 px-6 relative" data-purpose="rsvp-confirmation">
+<div class="max-w-2xl mx-auto relative z-10 text-center">
+<p class="text-xs uppercase tracking-[0.35em] text-blushpink font-light mb-3">Konfirmasi Kehadiran</p>
+<h2 class="font-serif text-4xl sm:text-5xl text-ivory font-light mb-4">RSVP</h2>
+<p class="text-sm sm:text-base text-softblue/90 font-light leading-relaxed mb-12">
+        “We would be honored to celebrate this special day with you.”<br/>
+        Mohon konfirmasi kehadiran Anda sebelum hari perayaan.
+      </p>
+<form class="p-8 sm:p-10 rounded-3xl border border-softblue/20 bg-deepnavy/40 backdrop-blur-xl text-left space-y-6 shadow-2xl" id="rsvp-form">
+<!-- Guest Name (auto-populated) -->
+<div>
+<label class="block text-xs uppercase tracking-widest text-softblue font-light mb-2" for="rsvp-name">Nama Lengkap</label>
+<input class="w-full bg-midnight/60 border border-softblue/20 rounded-xl px-4 py-3.5 text-ivory placeholder-softblue/40 focus:border-dustyrose focus:ring-0 transition-colors text-sm font-light" id="rsvp-name" placeholder="Masukkan nama Anda..." required="" type="text"/>
+</div>
+<!-- Attendance Choice -->
+<div>
+<label class="block text-xs uppercase tracking-widest text-softblue font-light mb-2">Konfirmasi Kehadiran</label>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex items-center gap-3 p-3.5 rounded-xl bg-midnight/40 border border-softblue/20 cursor-pointer hover:border-dustyrose/50 transition-colors">
+<input checked="" class="text-dustyrose focus:ring-0 bg-midnight border-softblue/40" name="attendance" onchange="handleAttendanceChange(true)" type="radio" value="Hadir"/>
+<span class="text-sm text-ivory font-light">Hadir</span>
+</label>
+<label class="flex items-center gap-3 p-3.5 rounded-xl bg-midnight/40 border border-softblue/20 cursor-pointer hover:border-dustyrose/50 transition-colors">
+<input class="text-dustyrose focus:ring-0 bg-midnight border-softblue/40" name="attendance" onchange="handleAttendanceChange(false)" type="radio" value="Tidak dapat hadir"/>
+<span class="text-sm text-ivory/80 font-light">Tidak dapat hadir</span>
+</label>
+</div>
+</div>
+<!-- STRICT MAXIMUM 2 GUESTS: Selector Strictly offers ONLY: '1 Orang' and '2 Orang' -->
+<div id="guest-count-container">
+<label class="block text-xs uppercase tracking-widest text-softblue font-light mb-2" for="rsvp-pax">
+            Jumlah Tamu <span class="text-dustyrose text-[11px]"></span>
+</label>
+<select class="w-full bg-midnight/60 border border-softblue/20 rounded-xl px-4 py-3.5 text-ivory focus:border-dustyrose focus:ring-0 transition-colors text-sm font-light" id="rsvp-pax">
+<option value="1 Orang">1 Orang</option>
+<option value="2 Orang">2 Orang</option>
+</select>
+</div>
+<!-- Message Field -->
+<div>
+<label class="block text-xs uppercase tracking-widest text-softblue font-light mb-2" for="rsvp-message">Pesan &amp; Ucapan</label>
+<textarea class="w-full bg-midnight/60 border border-softblue/20 rounded-xl px-4 py-3.5 text-ivory placeholder-softblue/40 focus:border-dustyrose focus:ring-0 transition-colors text-sm font-light" id="rsvp-message" placeholder="Tuliskan ucapan atau doa restu Anda..." rows="3"></textarea>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium text-white bg-gradient-to-r from-dustyblue via-dustyrose to-dustyblue hover:opacity-95 transition-all duration-500 shadow-xl flex items-center justify-center gap-2" type="submit">
+<i class="w-4 h-4" data-lucide="send"></i>
+<span>Kirim RSVP</span>
+</button>
+</form>
+<!-- Feedback Toast -->
+<div class="hidden mt-6 p-4 rounded-2xl bg-deepnavy/90 border border-dustyrose/50 text-blushpink text-sm backdrop-blur-md transition-all" id="rsvp-toast">
+        Terima kasih telah mengonfirmasi kehadiran Anda. Semoga berkah senantiasa menyertai kita semua.
+      </div>
+</div>
+</section>
+<!-- END: RSVP Section -->
+<!-- BEGIN: Wishes & Prayers Stream Section -->
+<section class="py-24 px-6 relative" data-purpose="wishes-board">
+<div class="max-w-3xl mx-auto relative z-10">
+<div class="text-center max-w-xl mx-auto mb-16">
+<p class="text-xs uppercase tracking-[0.35em] text-dustyblue font-light mb-3">Untaian Doa</p>
+<h2 class="font-serif text-4xl sm:text-5xl text-ivory font-light">Wishes &amp; Prayers</h2>
+<div class="w-20 h-px bg-gradient-to-r from-transparent via-softblue/40 to-transparent mx-auto mt-4"></div>
+</div>
+<div class="space-y-4 max-h-[440px] overflow-y-auto pr-2" id="wishes-stream">
+<!-- Initial Prayer 1 -->
+<div class="p-6 rounded-2xl bg-deepnavy/30 border border-softblue/15 backdrop-blur-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-serif text-lg text-ivory">Keluarga Besar Rafik</span>
+<span class="text-[11px] text-softblue/60 font-mono">Baru saja</span>
+</div>
+<p class="text-sm text-softblue/90 font-light leading-relaxed">
+            Barakallahu lakuma wa baraka alaikuma wa jamaa bainakuma fii khair. Selamat menempuh lembaran baru Fakhira &amp; Wafi tercinta.
+          </p>
+</div>
+<!-- Initial Prayer 2 -->
+<div class="p-6 rounded-2xl bg-deepnavy/30 border border-softblue/15 backdrop-blur-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-serif text-lg text-ivory">Sahabat Kampus</span>
+<span class="text-[11px] text-softblue/60 font-mono">1 jam yang lalu</span>
+</div>
+<p class="text-sm text-softblue/90 font-light leading-relaxed">
+            Semoga senantiasa menjadi keluarga yang sakinah, mawaddah, dan warahmah, dilimpahkan kebahagiaan dunia hingga akhirat. Aamiin!
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Wishes & Prayers Stream Section -->
+<!-- BEGIN: Closing Outro Section -->
+<footer class="py-32 px-6 relative text-center overflow-hidden" data-purpose="closing-credit">
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[320px] bg-gradient-to-t from-deepnavy/70 to-transparent pointer-events-none"></div>
+<div class="max-w-3xl mx-auto relative z-10 flex flex-col items-center">
+<div class="w-20 h-20 rounded-full border border-softblue/30 flex items-center justify-center mb-8 bg-deepnavy/40 backdrop-blur-md font-serif text-2xl text-dustyrose float-slow">
+        F &amp; W
+      </div>
+<p class="text-xs uppercase tracking-[0.4em] text-softblue/80 font-light mb-4">
+        Merupakan Kehormatan &amp; Kebahagiaan Bagi Kami
+      </p>
+<h2 class="font-serif text-5xl sm:text-6xl md:text-7xl text-ivory font-light tracking-wide glow-text mb-6">
+        FAKHIRA &amp; WAFI
+      </h2>
+<p class="font-serif italic text-lg sm:text-xl text-blushpink font-light tracking-wide max-w-lg leading-relaxed mb-12">
+        “FROM A SIMPLE INTRODUCTION, TO A LIFETIME TOGETHER.”
+      </p>
+<div class="w-32 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-12"></div>
+<p class="text-[11px] text-softblue/50 tracking-[0.25em] uppercase font-light">
+        Keluarga Besar Bapak Muhamad Rafik &amp; Bapak Muhammad Amin
+      </p>
+</div>
+</footer>
+<!-- END: Closing Outro Section -->
+</main>
+<!-- JAVASCRIPT LOGIC -->
+<script data-purpose="particles-engine">
+  const canvas = document.getElementById('ambient-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  class Stardust {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 0.6;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = -Math.random() * 0.4 - 0.1;
+      this.opacity = Math.random() * 0.5 + 0.2;
+      this.color = Math.random() > 0.5 ? '201, 140, 167' : '194, 214, 235';
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.y < 0 || this.x < 0 || this.x > canvas.width) {
+        this.reset();
+        this.y = canvas.height + 10;
+      }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    const count = Math.min(Math.floor(window.innerWidth / 22), 60);
+    for (let i = 0; i < count; i++) {
+      particles.push(new Stardust());
+    }
+  }
+  initParticles();
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+</script>
+<script data-purpose="curtain-url-music">
+  // URL '?to=' Parameter Extraction
+  function setGuestGreeting() {
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get('to');
+    if (guest && guest.trim() !== '') {
+      const decoded = decodeURIComponent(guest).trim();
+      document.getElementById('guest-name').innerText = decoded;
+      const rsvpInput = document.getElementById('rsvp-name');
+      if (rsvpInput) {
+        rsvpInput.value = decoded;
+      }
+    }
+  }
+  setGuestGreeting();
+
+  // YouTube Audio Controls
+  let isPlaying = false;
+  let ytReady = false;
+  const ytPlayer = document.getElementById('yt-player');
+  const musicBtn = document.getElementById('music-toggle-btn');
+  const vinylIcon = document.getElementById('vinyl-icon');
+  const musicTooltip = document.getElementById('music-tooltip');
+
+  // Send commands only after the YouTube iframe has had time to initialize.
+  // The opening button is a real user gesture, which is required by mobile browsers
+  // before they allow an unmuted YouTube video/audio to start.
+  function sendYouTubeCommand(func) {
+    if (!ytPlayer || !ytPlayer.contentWindow) return false;
+    ytPlayer.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: func,
+      args: []
+    }), 'https://www.youtube.com');
+    return true;
+  }
+
+  function playAudio() {
+    if (!sendYouTubeCommand('playVideo')) return;
+    isPlaying = true;
+    vinylIcon.classList.remove('spin-disc-paused');
+    if (musicTooltip) musicTooltip.innerText = 'Now Playing Score';
+  }
+
+  function pauseAudio() {
+    if (!sendYouTubeCommand('pauseVideo')) return;
+    isPlaying = false;
+    vinylIcon.classList.add('spin-disc-paused');
+    if (musicTooltip) musicTooltip.innerText = 'Music Paused';
+  }
+
+  // Let the iframe initialize before the invitation is opened.
+  if (ytPlayer) {
+    ytPlayer.addEventListener('load', () => {
+      ytReady = true;
+    }, { once: true });
+  }
+
+  musicBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      pauseAudio();
+    } else {
+      playAudio();
+    }
+  });
+
+  // Reveal Curtain + START MUSIC from the SAME mobile tap.
+  const curtain = document.getElementById('curtain-overlay');
+  const btnOpen = document.getElementById('btn-open-invitation');
+
+  btnOpen.addEventListener('click', (event) => {
+    // Start playback immediately, before any animation/setTimeout.
+    // This preserves the user's tap gesture on iOS/Android.
+    playAudio();
+
+    curtain.style.opacity = '0';
+    curtain.style.transform = 'translateY(-100%)';
+    setTimeout(() => {
+      curtain.style.display = 'none';
+    }, 1000);
+  });
+</script>
+<script data-purpose="wedding-countdown">
+  const weddingDate = new Date('November 22, 2026 15:30:00 GMT+0700').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    if (diff < 0) {
+      document.getElementById('timer-days').innerText = '00';
+      document.getElementById('timer-hours').innerText = '00';
+      document.getElementById('timer-minutes').innerText = '00';
+      document.getElementById('timer-seconds').innerText = '00';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('timer-days').innerText = String(days).padStart(2, '0');
+    document.getElementById('timer-hours').innerText = String(hours).padStart(2, '0');
+    document.getElementById('timer-minutes').innerText = String(minutes).padStart(2, '0');
+    document.getElementById('timer-seconds').innerText = String(seconds).padStart(2, '0');
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+<script data-purpose="gallery-zoom">
+  const galleryImages = [
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuANkZ5hmDSSZAXXqf4YWmSf2sRKMzgUKeQratTkR9_xFEcwligz9K5eCDUJuNn5GdwDxoht3E1TLYZOoGJs59eExC9JR1e8Ntjf9e2vbhrZjXvukq9MBTRwAaYTEC17tWn9ZjevCi2_-DFmNU9Bpkvnbah-m87YiKgzFLUKeo2LDiX7jF0GPYCxjhfRLAAh_xer75r7p35cXOVOfWK0L5x0zQP_qXSU2xcY-iQfzSg-_pvSWGEwFA4wrFDMyvc4NceBwVA",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCZ7Sk9FqoEm7wW7DVA7sjP5jUMj6EXL-GT6YU4hqTmSYPghCh2xEOvSvGNpyE2unEmV-WJEB7ypuV8xsZHmE0lvqaUze9HDm6WiwvYNiEot_3gnZq9CNIPYCR34yYL4nvoUV0qY-zPEN-fKF5g89nJL00swdzz2guyAmOMO9e7GEBIZVlQpV4b0JjraX4gDBHSqtDgYT6Qtn-WIDzvm8Rp4Wnsiqa066wZOVED8ogWx2QkFIVC3WrzOfMVUh1YP3fSh-c",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuD1SK-n4fye-hjT2NZ3ljHe05mbFQPnoY7djO81U_Fa-yoPKmnoOp95Pj-KPQVAMAPbkxF5HnpPQnVVODI7st1YYJvmjfxBShygoZuY-Z97rWlnWEE9JamumM-FkqwbfCNErO0UBAtVleYYJ-v7p-JpuU4YlbXYKnoXvGR9Zy4MewoZ89gi2oocLIrGhAYWbWlFf6wZBhtrW-AEoyE_wn-iRY6DWSo3vXYJYrKmcVe2dI2-kkQO4LWUH0_nPtPaB5sM0Yc",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCP-SUADH7CvPi0GqHINXClUO8PQLipSFzM-Jsmryj2gJMDl4w3fm32C8N0jmEOACCJUyNG-S33JBM3ym5TZidgWrb0uHxl5N-YteF9XT68uksam0WcKBZBtal3z_HPmQzEQNXHhHYwFCCfCJXvXOFfwZbdIm9iAg8L9jcvfJrGWDjgbqTX5VkIZQXdMro0e1z81sKKinWEzLg97eJyVOIRaRpgza0BOr_XukD6woyW4To7C-PENvB9PMVwdadouS28HUE",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCCV_MEJ9Y_VjcAtZUedShNKq9DkuudckQotLp_J3-Yc3YdcIJCN34wvADZpN4902Ei9MkJll7s3Adaont7jb-gyFmKZQk8cqlOtzkZbHDo6xPT3ND-qDsflIEk8K3FLApc8w1vQ1PHV6d1SJT-axbMSoVw_ZivVt_F8vcPR7-tHcaBzZzzxoxx8rjJsv5HfBb-Z8MEhwx6wul6TmqcLwt7o3BQWlk4Mk1vBr2qajHdcktS1qWb6Cm439gNGCEooZIs5W8",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCa75kY9TISWLpDohlvaNBJTC4gftmUJAG6Yr6XY-O72OUfcbRFjO-ZkmP7I_O_dyTuXoCYSVeEMP3lrmEiqy6YMx9fd3V66uYJPXIPfV8L2_RLqtnjyG7PQbZKnNRDIfjXtNGYzZdiSotE7gVFSu-K7cGDbkxc6i-ztPtue9zdNbA4rFPg669pEYFEsFvHuO3r_DannP3DbBno-7O_K-SkDXWCbBHCGY_p_VZvCImC4SrbMfjOJYy7-_dKKAoq4g1NH5A",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAXIJ5_bTf_PjxnRPSSRmuru6ypLAkmXCqHKJ1wRyYQkI52VrxzynuPO2MyWvVCXVb0db6IdIoyOkGMQ-sAzXW9Z--UB-BFRg0t6ggPMy8sU092ogSVfbIA7cOMfqsEfimBOuj1DeJ_N17oDc2th8qeiuhfNkcYSNBeCrFqLu3WzPLBUEU2ms_dZTmDCCnGcF3_ZpoLRY7EX1kjgubE8aj3oEIEFUbJuiPg5uvV9FSa2Gku-LOEiXUeibMR6O76uUlX4O8",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuD1hwJHnHH8YVDxjtXdvmQfn0L51v8FDGBdrYuF7f533NfTQDWjFZQX0VwC2AyLM7sYSOfBTq1VZGJ6GziJ0ly7pve2_0uZNWy5OdQZeqoCul9XCMOomubKPwtenRW-y5JfAgPyUMWkgQLUjMsTjd9RfFHMFYx_bPMay1YYugTa-mOgtEQ4OmvNMyi-AJrYaSIbBzP6h01vujZA0gFQ3pDixyQmoU_w77an_Fv1XL8cm4nF1Ys5ovrKXW5C9Gy7Gy1ATsM"
+  ];
+  let currentIdx = 0;
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    modalImg.src = galleryImages[currentIdx];
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeLightbox() {
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  function nextLightbox() {
+    currentIdx = (currentIdx + 1) % galleryImages.length;
+    modalImg.src = galleryImages[currentIdx];
+  }
+
+  function prevLightbox() {
+    currentIdx = (currentIdx - 1 + galleryImages.length) % galleryImages.length;
+    modalImg.src = galleryImages[currentIdx];
+  }
+</script>
+<!-- AGENTAI WEDDING API: RSVP + WISHES -->
+<script data-purpose="rsvp-interaction">
+  // =========================
+  // AGENTAI DATABASE / API
+  // =========================
+  // The invitation no longer uses Supabase.
+  // RSVP and wishes are sent to the AgentAI backend.
+  // Backend endpoints:
+  //   GET  /api/wedding/wishes.php?event=fakhira-wafi
+  //   POST /api/wedding/rsvp.php
+  //   POST /api/wedding/wishes.php
+console.info("WEDDING_API_BUILD: SAME-ORIGIN-FIX-2026-10-13");
+  const AGENTAI_API_BASE = '/api/wedding';
+  const WEDDING_EVENT = 'fakhira-wafi';
+
+  // API helper: all wedding form traffic goes directly to AgentAI.
+  async function agentAIRequest(path, options = {}) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    try {
+      const response = await fetch(`${AGENTAI_API_BASE}/${path}`, {
+        method: options.method || 'GET',
+        cache: 'no-store',
+        signal: controller.signal,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        body: options.body
+      });
+
+      const text = await response.text();
+      let result = {};
+      try { result = text ? JSON.parse(text) : {}; }
+      catch (_) { throw new Error(`API mengirim respons yang tidak valid (${response.status})`); }
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.message || `API error ${response.status}`);
+      }
+      return result;
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        throw new Error('Koneksi ke server terlalu lama.');
+      }
+      throw error;
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  // =========================
+  // RSVP ATTENDANCE CONTROL
+  // =========================
+  function handleAttendanceChange(isAttending) {
+    const container = document.getElementById('guest-count-container');
+    const paxSelect = document.getElementById('rsvp-pax');
+    if (!container || !paxSelect) return;
+
+    if (isAttending) {
+      container.style.opacity = '1';
+      container.style.pointerEvents = 'auto';
+      paxSelect.disabled = false;
+    } else {
+      container.style.opacity = '0.35';
+      container.style.pointerEvents = 'none';
+      paxSelect.disabled = true;
+    }
+  }
+
+  // =========================
+  // ELEMENTS
+  // =========================
+  const rsvpForm = document.getElementById('rsvp-form');
+  const toast = document.getElementById('rsvp-toast');
+  const stream = document.getElementById('wishes-stream');
+
+  // =========================
+  // CREATE WISH CARD
+  // =========================
+  function createWishCard(name, message, createdAt) {
+    const card = document.createElement('div');
+    card.className = 'p-6 rounded-2xl bg-deepnavy/30 border border-softblue/15 backdrop-blur-sm transition-all';
+
+    const header = document.createElement('div');
+    header.className = 'flex items-center justify-between mb-2';
+
+    const nameElement = document.createElement('span');
+    nameElement.className = 'font-serif text-lg text-ivory';
+    nameElement.textContent = name || 'Tamu Undangan';
+
+    const timeElement = document.createElement('span');
+    timeElement.className = 'text-[11px] text-softblue/60 font-mono';
+
+    if (createdAt) {
+      const date = new Date(createdAt);
+      timeElement.textContent = date.toLocaleDateString('id-ID', {
+        day: 'numeric', month: 'short', year: 'numeric'
+      });
+    } else {
+      timeElement.textContent = 'Baru saja';
+    }
+
+    header.appendChild(nameElement);
+    header.appendChild(timeElement);
+
+    const messageElement = document.createElement('p');
+    messageElement.className = 'text-sm text-softblue/90 font-light leading-relaxed';
+    messageElement.textContent = message || '';
+
+    card.appendChild(header);
+    card.appendChild(messageElement);
+    return card;
+  }
+
+  // =========================
+  // LOAD WISHES FROM AGENTAI
+  // =========================
+  async function loadWishes() {
+    if (!stream) return;
+
+    try {
+      const result = await agentAIRequest(`wishes.php?event=${encodeURIComponent(WEDDING_EVENT)}`);
+      const data = Array.isArray(result) ? result : (result.data || result.wishes || []);
+
+      data.slice().reverse().forEach(wish => {
+        stream.prepend(createWishCard(wish.name, wish.message, wish.created_at || wish.createdAt));
+      });
+    } catch (error) {
+      console.error('Error loading wishes from AgentAI:', error);
+    }
+  }
+
+  // =========================
+  // RSVP SUBMISSION
+  // =========================
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('rsvp-name').value.trim();
+      const attendanceInput = document.querySelector('input[name="attendance"]:checked');
+
+      if (!attendanceInput) {
+        alert('Silakan pilih kehadiran terlebih dahulu.');
+        return;
+      }
+
+      const attendance = attendanceInput.value;
+      const pax = attendance === 'Hadir'
+        ? parseInt(document.getElementById('rsvp-pax').value) || 1
+        : 0;
+      const message = document.getElementById('rsvp-message').value.trim();
+
+      const submitButton = rsvpForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton ? submitButton.innerHTML : '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Mengirim...';
+      }
+
+      try {
+        const result = await agentAIRequest('rsvp.php', {
+          method: 'POST',
+          body: JSON.stringify({
+            event: WEDDING_EVENT,
+            name,
+            attendance,
+            guests: pax,
+            message: message || null
+          })
+        });
+
+        if (toast) {
+          toast.classList.remove('hidden');
+          setTimeout(() => toast.classList.add('hidden'), 6000);
+        }
+
+        // Save the optional message as a public wedding wish too.
+        // RSVP remains successful even if the separate wishes request fails.
+        if (message !== '') {
+          try {
+            await agentAIRequest('wishes.php', {
+              method: 'POST',
+              body: JSON.stringify({
+                event: WEDDING_EVENT,
+                name,
+                message
+              })
+            });
+          } catch (wishError) {
+            console.error('Wish save error:', wishError);
+          }
+
+          if (stream) {
+            stream.prepend(createWishCard(name, message, null));
+          }
+        }
+
+        rsvpForm.reset();
+        const hadirRadio = document.querySelector('input[name="attendance"][value="Hadir"]');
+        if (hadirRadio) {
+          hadirRadio.checked = true;
+          handleAttendanceChange(true);
+        }
+      } catch (error) {
+        console.error('RSVP error:', error);
+        alert(`Maaf, RSVP gagal dikirim.\n\n${error.message || 'Terjadi kesalahan pada server.'}`);
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText;
+        }
+      }
+    });
+  }
+
+  // =========================
+  // PAGE INITIALIZATION
+  // =========================
+  window.addEventListener('DOMContentLoaded', async () => {
+    await loadWishes();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+</body>
+</html>
